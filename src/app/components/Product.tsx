@@ -3,6 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 type Props = {
     // Define your component props here
@@ -26,6 +27,13 @@ const Product: React.FC<Props> = (props) => {
                 <Typography variant="body2" color="text.secondary">
                     Price: {props.price}
                 </Typography>
+                <Button
+                    onClick={props.onAddToBasket}
+                    variant="contained"
+                    color="primary"
+                >
+                    Add to Basket
+                </Button>
             </CardContent>
         </Card>
     );

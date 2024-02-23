@@ -14,17 +14,21 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
+import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
+import Drawer from "@mui/material/Drawer";
+import ShoppingBasketItem from "./ShoppingBasketItem";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar(props) {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
         null
     );
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
         null
     );
+    const [isBasketOpen, setIsBasketOpen] = React.useState(false);
 
     const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElNav(event.currentTarget);
@@ -39,6 +43,14 @@ function ResponsiveAppBar() {
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+
+    const handleBasketOpen = () => {
+        setIsBasketOpen(true);
+    };
+
+    const handleBasketClose = () => {
+        setIsBasketOpen(false);
     };
 
     return (
@@ -150,7 +162,7 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0 }}>
+                    {/* <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton
                                 onClick={handleOpenUserMenu}
@@ -189,7 +201,30 @@ function ResponsiveAppBar() {
                                 </MenuItem>
                             ))}
                         </Menu>
+                    </Box> */}
+
+                    <Box sx={{ flexGrow: 0 }}>
+                        <Tooltip title="Open basket">
+                            <IconButton
+                                onClick={handleBasketOpen}
+                                sx={{ p: 0 }}
+                            >
+                                <ShoppingBasketOutlinedIcon />
+                            </IconButton>
+                        </Tooltip>
                     </Box>
+                    <Drawer
+                        anchor="right"
+                        color="primary"
+                        open={isBasketOpen}
+                        onClose={handleBasketClose}
+                    >
+                        {/* Here you can add the content of the shopping basket */}
+                        <Typography sx={{ p: 2 }}>
+                            Shopping Basket Details
+                            <ShoppingBasketItem />
+                        </Typography>
+                    </Drawer>
                 </Toolbar>
             </Container>
         </AppBar>
