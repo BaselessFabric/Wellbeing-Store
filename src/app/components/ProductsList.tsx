@@ -1,21 +1,14 @@
 import React from "react";
 import Product from "./Product";
+import products from "../modal/ProductsData";
+import { basket } from "./Header";
 
 interface Props {}
 
 const ProductsList: React.FC<Props> = (props) => {
-    const products = [
-        {
-            name: "Product 1",
-            price: 100,
-            image: "/images/elixir.webp",
-        },
-        {
-            name: "Product 2",
-            price: 200,
-            image: "/images/elixir2.webp",
-        },
-    ];
+    const handleAddToBasket = (product) => {
+        basket.addProduct(product);
+    };
 
     return (
         <div
@@ -39,6 +32,7 @@ const ProductsList: React.FC<Props> = (props) => {
                     name={product.name}
                     price={product.price}
                     image={product.image}
+                    onAddToBasket={() => handleAddToBasket(product)}
                 />
             ))}
         </div>

@@ -21,16 +21,13 @@ const ShoppingBasketItem: React.FC<Props> = (props) => {
             <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
                     <Typography component="h5" variant="h5">
-                        {/* {name} */}
-                        name
+                        {props.name}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary">
-                        {/* Price: {price} */}
-                        price
+                        Price: {props.price}
                     </Typography>
                     <Typography variant="subtitle1" color="text.secondary">
-                        {/* Quantity: {quantity} */}
-                        quantity
+                        Quantity: {props.quantity}
                     </Typography>
                 </CardContent>
                 <Box

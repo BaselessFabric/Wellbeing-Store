@@ -17,9 +17,11 @@ import AdbIcon from "@mui/icons-material/Adb";
 import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlined";
 import Drawer from "@mui/material/Drawer";
 import ShoppingBasketItem from "./ShoppingBasketItem";
+import ShoppingBasket from "../modal/ShoppingBasketClass";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
+export const basket = new ShoppingBasket();
 
 function ResponsiveAppBar(props) {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -223,6 +225,13 @@ function ResponsiveAppBar(props) {
                         <Typography sx={{ p: 2 }}>
                             Shopping Basket Details
                             <ShoppingBasketItem />
+                            {basket.getItems().map((item) => (
+                                <ShoppingBasketItem
+                                    name={item.getName()}
+                                    price={item.getPrice()}
+                                    quantity={item.getQuantity}
+                                />
+                            ))}
                         </Typography>
                     </Drawer>
                 </Toolbar>
