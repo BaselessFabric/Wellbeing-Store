@@ -7,13 +7,9 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import image from "next/image";
 
-interface Props {
-    // Define your component's props here
-}
+interface Props {}
 
 const ShoppingBasketItem: React.FC<Props> = (props) => {
-    // Component logic goes here
-
     return (
         <Card sx={{ display: "flex", marginBottom: 2 }}>
             <CardMedia

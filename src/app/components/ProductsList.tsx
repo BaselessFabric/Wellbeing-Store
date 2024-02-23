@@ -1,13 +1,9 @@
 import React from "react";
 import Product from "./Product";
 
-interface Props {
-    // Define your component's props here
-}
+interface Props {}
 
 const ProductsList: React.FC<Props> = (props) => {
-    // Your component logic goes here
-
     const products = [
         {
             name: "Product 1",
@@ -22,7 +18,6 @@ const ProductsList: React.FC<Props> = (props) => {
     ];
 
     return (
-        // JSX code for rendering your component
         <div
             style={{
                 display: "flex",

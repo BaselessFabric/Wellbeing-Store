@@ -5,13 +5,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
-type Props = {
-    // Define your component props here
-};
+type Props = {};
 
 const Product: React.FC<Props> = (props) => {
-    // Component logic goes here
-
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
