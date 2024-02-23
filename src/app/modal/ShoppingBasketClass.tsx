@@ -2,7 +2,8 @@ import Product from "./ProductClass";
 
 export default class ShoppingBasket {
     private items: {
-        getName(): unknown;
+        name: any;
+        price: any;
         product: Product;
         quantity: number;
     }[] = [];
@@ -22,8 +23,19 @@ export default class ShoppingBasket {
         return this.items.reduce((total, item) => total + item.quantity, 0);
     }
 
-    removeProduct(product: Product) {
-        this.items = this.items.filter((item) => item.product !== product);
+    removeProduct(product: Product, quantity: number = 1) {
+        const existingItem = this.items.find(
+            (item) => item.product === product
+        );
+        if (existingItem) {
+            if (existingItem.quantity > quantity) {
+                existingItem.quantity -= quantity;
+            } else {
+                this.items = this.items.filter(
+                    (item) => item.product !== product
+                );
+            }
+        }
     }
 
     getItems() {

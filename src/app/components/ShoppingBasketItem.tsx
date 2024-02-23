@@ -39,7 +39,7 @@ const ShoppingBasketItem: React.FC<Props> = (props) => {
                     }}
                 >
                     <Button
-                        // onClick={onRemove}
+                        onClick={props.handleRemoveFromBasket}
                         variant="contained"
                         color="secondary"
                     >

@@ -55,6 +55,15 @@ function ResponsiveAppBar(props) {
         setIsBasketOpen(false);
     };
 
+    // have to interact with a basket state, as opposed to the data in the basket object, or the basket wont be re-rendered
+    // when item is removed
+    const [basketItems, setBasketItems] = React.useState(basket.getItems());
+
+    const handleRemoveFromBasket = (product) => {
+        basket.removeProduct(product);
+        setBasketItems([...basket.getItems()]);
+    };
+
     return (
         <AppBar position="static">
             <Container maxWidth="xl">
@@ -224,13 +233,17 @@ function ResponsiveAppBar(props) {
                         {/* Here you can add the content of the shopping basket */}
                         <Typography sx={{ p: 2 }}>
                             Shopping Basket Details
-                            <ShoppingBasketItem />
                             {basket.getItems().map((item) => (
-                                <ShoppingBasketItem
-                                    name={item.getName()}
-                                    price={item.getPrice()}
-                                    quantity={item.getQuantity}
-                                />
+                                <div>
+                                    <ShoppingBasketItem
+                                        name={item.product.name}
+                                        price={item.product.price}
+                                        quantity={item.quantity}
+                                        handleRemoveFromBasket={() =>
+                                            handleRemoveFromBasket(item.product)
+                                        }
+                                    />
+                                </div>
                             ))}
                         </Typography>
                     </Drawer>
