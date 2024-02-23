@@ -230,7 +230,6 @@ function ResponsiveAppBar(props) {
                         open={isBasketOpen}
                         onClose={handleBasketClose}
                     >
-                        {/* Here you can add the content of the shopping basket */}
                         <Typography sx={{ p: 2 }}>
                             Shopping Basket Details
                             {basket.getItems().map((item) => (
