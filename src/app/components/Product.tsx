@@ -12,21 +12,23 @@ const Product: React.FC<Props> = (props) => {
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 component="img"
-                height="140"
+                sx={{ width: 260 }}
                 image={props.image}
                 alt={props.name}
             />
+
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {props.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Price: {props.price}
+                    Price: {`${props.price}`}
                 </Typography>
                 <Button
                     onClick={props.onAddToBasket}
                     variant="contained"
                     color="primary"
+                    sx={{ backgroundColor: "primary" }}
                 >
                     Add to Basket
                 </Button>

@@ -236,6 +236,7 @@ function ResponsiveAppBar(props) {
                                 <div>
                                     <ShoppingBasketItem
                                         name={item.product.name}
+                                        image={item.product.image}
                                         price={item.product.price}
                                         quantity={item.quantity}
                                         handleRemoveFromBasket={() =>
@@ -244,6 +245,9 @@ function ResponsiveAppBar(props) {
                                     />
                                 </div>
                             ))}
+                        </Typography>
+                        <Typography sx={{ p: 2 }}>
+                            Total Price: {basket.getTotalPrice()}
                         </Typography>
                     </Drawer>
                 </Toolbar>

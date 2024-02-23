@@ -1,11 +1,19 @@
 export default class Product {
     private id: number;
+    private image: string;
     private name: string;
     private desc: string;
     private price: number;
 
-    constructor(id: number, name: string, desc: string, price: number) {
+    constructor(
+        id: number,
+        image: string,
+        name: string,
+        desc: string,
+        price: number
+    ) {
         this.id = id;
+        this.image = image;
         this.name = name;
         this.desc = desc;
         this.price = price;

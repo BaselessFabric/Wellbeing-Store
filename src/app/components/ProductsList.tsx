@@ -14,11 +14,10 @@ const ProductsList: React.FC<Props> = (props) => {
         <div
             style={{
                 display: "flex",
-                marginLeft: "200px",
-                marginRight: "200px",
-                marginTop: "50px",
-                marginBottom: "50px",
-                justifyContent: "space-between",
+                flexWrap: "wrap",
+                justifyContent: "center",
+                maxWidth: "90%",
+                margin: "50px auto",
             }}
         >
             {/* <h1>Products</h1> */}
@@ -27,13 +26,15 @@ const ProductsList: React.FC<Props> = (props) => {
                 // <li key={index}>
                 //     {product.name} - {product.price}
                 // </li>
-                <Product
-                    key={index}
-                    name={product.name}
-                    price={product.price}
-                    image={product.image}
-                    onAddToBasket={() => handleAddToBasket(product)}
-                />
+                <div style={{ margin: "10px" }}>
+                    <Product
+                        key={index}
+                        name={product.name}
+                        price={product.price}
+                        image={product.image}
+                        onAddToBasket={() => handleAddToBasket(product)}
+                    />
+                </div>
             ))}
         </div>
     );

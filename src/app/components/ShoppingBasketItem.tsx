@@ -5,7 +5,6 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import image from "next/image";
 
 interface Props {}
 
@@ -15,8 +14,8 @@ const ShoppingBasketItem: React.FC<Props> = (props) => {
             <CardMedia
                 component="img"
                 sx={{ width: 140 }}
-                // image={image}
-                // alt={name}
+                image={props.image}
+                alt={props.name}
             />
             <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto" }}>
