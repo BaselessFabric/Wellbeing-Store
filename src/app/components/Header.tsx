@@ -237,7 +237,7 @@ function ResponsiveAppBar(props) {
                                     <ShoppingBasketItem
                                         name={item.product.name}
                                         image={item.product.image}
-                                        price={item.product.price}
+                                        price={item.product.getPrice()}
                                         quantity={item.quantity}
                                         handleRemoveFromBasket={() =>
                                             handleRemoveFromBasket(item.product)

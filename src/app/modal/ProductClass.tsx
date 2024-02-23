@@ -33,8 +33,8 @@ export default class Product {
         return this.desc;
     }
 
-    getPrice(): number {
-        return this.price;
+    getPrice(): string {
+        return `£${this.price}`;
     }
 
     setId(id: number): void {

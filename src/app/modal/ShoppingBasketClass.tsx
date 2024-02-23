@@ -43,9 +43,9 @@ export default class ShoppingBasket {
     }
 
     getTotalPrice() {
-        return this.items.reduce(
-            (total, item) => total + item.product.getPrice() * item.quantity,
+        return `£${this.items.reduce(
+            (total, item) => total + item.product.price * item.quantity,
             0
-        );
+        )}`;
     }
 }

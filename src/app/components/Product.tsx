@@ -22,7 +22,7 @@ const Product: React.FC<Props> = (props) => {
                     {props.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Price: {`${props.price}`}
+                    Price: {props.price}
                 </Typography>
                 <Button
                     onClick={props.onAddToBasket}

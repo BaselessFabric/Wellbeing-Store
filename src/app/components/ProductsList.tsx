@@ -30,7 +30,7 @@ const ProductsList: React.FC<Props> = (props) => {
                     <Product
                         key={index}
                         name={product.name}
-                        price={product.price}
+                        price={product.getPrice()}
                         image={product.image}
                         onAddToBasket={() => handleAddToBasket(product)}
                     />
