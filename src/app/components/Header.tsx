@@ -65,6 +65,12 @@ function ResponsiveAppBar(props) {
         setBasketItems([...basket.getItems()]);
     };
 
+    const [totalItems, setTotalItems] = React.useState();
+
+    // React.useEffect(() => {
+    //     setTotalItems(basket.getTotalItemQuantity());
+    // }, [basket]);
+
     return (
         <AppBar position="sticky">
             <Container maxWidth="xl">
@@ -228,7 +234,9 @@ function ResponsiveAppBar(props) {
                                 onClick={handleBasketOpen}
                                 sx={{ p: 0 }}
                             >
-                                <Badge badgeContent={1}>
+                                <Badge
+                                    badgeContent={basket.getTotalItemQuantity()}
+                                >
                                     <ShoppingBasketOutlinedIcon />
                                 </Badge>
                             </IconButton>

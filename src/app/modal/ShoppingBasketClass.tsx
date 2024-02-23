@@ -42,6 +42,10 @@ export default class ShoppingBasket {
         return this.items;
     }
 
+    getTotalItemQuantity() {
+        return this.items.reduce((total, item) => total + item.quantity, 0);
+    }
+
     getTotalPrice() {
         return `£${this.items.reduce(
             (total, item) => total + item.product.price * item.quantity,
