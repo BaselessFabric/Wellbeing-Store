@@ -21,14 +21,18 @@ const Product: React.FC<Props> = (props) => {
                 <Typography gutterBottom variant="h5" component="div">
                     {props.name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ marginBottom: "20px" }}
+                >
                     Price: {props.price}
                 </Typography>
                 <Button
                     onClick={props.onAddToBasket}
                     variant="contained"
                     color="primary"
-                    sx={{ backgroundColor: "primary" }}
+                    sx={{ backgroundColor: "primary.light" }}
                 >
                     Add to Basket
                 </Button>

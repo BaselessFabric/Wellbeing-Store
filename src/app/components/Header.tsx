@@ -18,8 +18,9 @@ import ShoppingBasketOutlinedIcon from "@mui/icons-material/ShoppingBasketOutlin
 import Drawer from "@mui/material/Drawer";
 import ShoppingBasketItem from "./ShoppingBasketItem";
 import ShoppingBasket from "../modal/ShoppingBasketClass";
+import Badge from "@mui/material/Badge";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = [];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 export const basket = new ShoppingBasket();
 
@@ -65,12 +66,17 @@ function ResponsiveAppBar(props) {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="sticky">
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <AdbIcon
-                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-                    />
+                    <Avatar
+                        src={"images/logo.webp"}
+                        alt="Logo"
+                        sx={{
+                            display: { xs: "none", md: "flex" },
+                            marginRight: "1rem",
+                        }}
+                    />{" "}
                     <Typography
                         variant="h6"
                         noWrap
@@ -86,9 +92,8 @@ function ResponsiveAppBar(props) {
                             textDecoration: "none",
                         }}
                     >
-                        WELLBEING STORE
+                        WellNest
                     </Typography>
-
                     <Box
                         sx={{
                             flexGrow: 1,
@@ -172,7 +177,6 @@ function ResponsiveAppBar(props) {
                             </Button>
                         ))}
                     </Box>
-
                     {/* <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton
@@ -213,28 +217,31 @@ function ResponsiveAppBar(props) {
                             ))}
                         </Menu>
                     </Box> */}
-
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open basket">
                             <IconButton
                                 onClick={handleBasketOpen}
                                 sx={{ p: 0 }}
                             >
-                                <ShoppingBasketOutlinedIcon />
+                                <Badge badgeContent={1}>
+                                    <ShoppingBasketOutlinedIcon />
+                                </Badge>
                             </IconButton>
                         </Tooltip>
                     </Box>
                     <Drawer
                         anchor="right"
-                        color="primary"
+                        color="blue"
                         open={isBasketOpen}
                         onClose={handleBasketClose}
+                        // sx={{ backgroundColor: "secondary.main" }}
                     >
                         <Typography sx={{ p: 2 }}>
                             Shopping Basket Details
-                            {basket.getItems().map((item) => (
+                            {basket.getItems().map((item, index) => (
                                 <div>
                                     <ShoppingBasketItem
+                                        key={index}
                                         name={item.product.name}
                                         image={item.product.image}
                                         price={item.product.getPrice()}

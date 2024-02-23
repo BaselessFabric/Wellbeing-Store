@@ -18,21 +18,15 @@ const CarouselComponent: React.FC = () => {
 
     return (
         <div>
-            <Carousel>
-                {/* {items.map(
-                    (item, i) => (
-                        <div>Hello!</div>
-                    )
-                    // <Item key={i} item={item} />
-                )} */}
+            <Carousel interval={10000}>
                 <img
                     style={{
                         maxHeight: "50vh",
                         objectFit: "cover",
                         width: "100%",
-                        objectPosition: "50% 50%",
+                        objectPosition: "50% 15%",
                     }}
-                    src="/images/utopia.webp"
+                    src="/images/promotion.webp"
                 ></img>
                 <img
                     style={{
@@ -42,6 +36,15 @@ const CarouselComponent: React.FC = () => {
                         objectPosition: "50% 75%",
                     }}
                     src="/images/yoga.webp"
+                ></img>
+                <img
+                    style={{
+                        maxHeight: "50vh",
+                        objectFit: "cover",
+                        width: "100%",
+                        objectPosition: "50% 50%",
+                    }}
+                    src="/images/utopia.webp"
                 ></img>
             </Carousel>
         </div>
