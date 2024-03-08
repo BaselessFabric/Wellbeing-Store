@@ -26,9 +26,8 @@ const ProductsList: React.FC<Props> = (props) => {
         // <li key={index}>
         //     {product.name} - {product.price}
         // </li>
-        <div style={{ margin: "10px" }}>
+        <div style={{ margin: "10px" }} key={product.getId()}>
           <Product
-            key={product.getId()}
             id={product.getId()}
             name={product.getName()}
             price={product.getPrice()}

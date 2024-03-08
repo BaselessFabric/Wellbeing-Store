@@ -1,55 +1,59 @@
 export default class Product {
-    private id: number;
-    private image: string;
-    private name: string;
-    private desc: string;
-    private price: number;
+  private id: number;
+  private image: string;
+  private name: string;
+  private desc: string;
+  private price: number;
 
-    constructor(
-        id: number,
-        image: string,
-        name: string,
-        desc: string,
-        price: number
-    ) {
-        this.id = id;
-        this.image = image;
-        this.name = name;
-        this.desc = desc;
-        this.price = price;
-    }
+  constructor(
+    id: number,
+    image: string,
+    name: string,
+    desc: string,
+    price: number
+  ) {
+    this.id = id;
+    this.image = image;
+    this.name = name;
+    this.desc = desc;
+    this.price = price;
+  }
 
-    // Getters and setters
+  // Getters and setters
 
-    getId(): number {
-        return this.id;
-    }
+  getId(): number {
+    return this.id;
+  }
 
-    getName(): string {
-        return this.name;
-    }
+  getName(): string {
+    return this.name;
+  }
 
-    getDesc(): string {
-        return this.desc;
-    }
+  getDesc(): string {
+    return this.desc;
+  }
 
-    getPrice(): string {
-        return `£${this.price}`;
-    }
+  getPrice(): string {
+    return `£${this.price}`;
+  }
 
-    setId(id: number): void {
-        this.id = id;
-    }
+  getImage(): string {
+    return this.image;
+  }
 
-    setName(name: string): void {
-        this.name = name;
-    }
+  setId(id: number): void {
+    this.id = id;
+  }
 
-    setDesc(desc: string): void {
-        this.desc = desc;
-    }
+  setName(name: string): void {
+    this.name = name;
+  }
 
-    setPrice(price: number): void {
-        this.price = price;
-    }
+  setDesc(desc: string): void {
+    this.desc = desc;
+  }
+
+  setPrice(price: number): void {
+    this.price = price;
+  }
 }
