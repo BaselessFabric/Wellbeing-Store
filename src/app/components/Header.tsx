@@ -21,32 +21,28 @@ import ShoppingBasket from "../modal/ShoppingBasketClass";
 import Badge from "@mui/material/Badge";
 import { useRouter } from "next/navigation";
 
-const pages = [];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+// Create a new instance of ShoppingBasket
 export const basket = new ShoppingBasket();
 
-function ResponsiveAppBar(props) {
+interface Props {
+  basketContents: any;
+  setBasketContents: any;
+}
+
+/**
+ * Renders a responsive app bar component with a logo, navigation menu, and a shopping basket.
+ *
+ * @param props - The component props.
+ * @returns The rendered `ResponsiveAppBar` component.
+ */
+function ResponsiveAppBar(props: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
   const [isBasketOpen, setIsBasketOpen] = React.useState(false);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   const handleBasketOpen = () => {
@@ -63,25 +59,22 @@ function ResponsiveAppBar(props) {
     router.push(`/`);
   };
 
-  // have to interact with a basket state, as opposed to the data in the basket object, or the basket wont be re-rendered
-  // when item is removed
-  const [basketItems, setBasketItems] = React.useState(basket.getItems());
+  const [basketItems, setBasketItems] = React.useState<any[]>(
+    basket.getItems()
+  );
 
-  const handleRemoveFromBasket = (product) => {
+  const handleRemoveFromBasket = (product: any) => {
     basket.removeProduct(product);
     setBasketItems([...basket.getItems()]);
   };
 
-  const [totalItems, setTotalItems] = React.useState();
-
-  // React.useEffect(() => {
-  //     setTotalItems(basket.getTotalItemQuantity());
-  // }, [basket]);
+  const [totalItems, setTotalItems] = React.useState<any>();
 
   return (
     <AppBar position="sticky">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {/* Logo */}
           <Avatar
             src={"/images/logo.webp"}
             alt="Logo"
@@ -90,6 +83,7 @@ function ResponsiveAppBar(props) {
               marginRight: "1rem",
             }}
           />
+          {/* Title */}
           <Typography
             variant="h6"
             noWrap
@@ -114,16 +108,7 @@ function ResponsiveAppBar(props) {
               display: { xs: "flex", md: "none" },
             }}
           >
-            {/* <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton> */}
+            {/* Navigation Menu */}
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -141,13 +126,7 @@ function ResponsiveAppBar(props) {
               sx={{
                 display: { xs: "block", md: "none" },
               }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            ></Menu>
           </Box>
           <Avatar
             src={"/images/logo.webp"}
@@ -181,58 +160,9 @@ function ResponsiveAppBar(props) {
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
-          >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-          {/* <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton
-                                onClick={handleOpenUserMenu}
-                                sx={{ p: 0 }}
-                            >
-                                <Avatar
-                                    alt="Remy Sharp"
-                                    src="/static/images/avatar/2.jpg"
-                                />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: "45px" }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: "top",
-                                horizontal: "right",
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem
-                                    key={setting}
-                                    onClick={handleCloseUserMenu}
-                                >
-                                    <Typography textAlign="center">
-                                        {setting}
-                                    </Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box> */}
+          ></Box>
           <Box sx={{ flexGrow: 0 }}>
+            {/* Shopping Basket */}
             <Tooltip title="Open basket">
               <IconButton onClick={handleBasketOpen} sx={{ p: 0 }}>
                 <Badge badgeContent={basket.getTotalItemQuantity()}>
@@ -241,28 +171,27 @@ function ResponsiveAppBar(props) {
               </IconButton>
             </Tooltip>
           </Box>
+          {/* Drawer for Shopping Basket */}
           <Drawer
             anchor="right"
             color="blue"
             open={isBasketOpen}
             onClose={handleBasketClose}
-            // sx={{ backgroundColor: "secondary.main" }}
           >
             <Typography sx={{ p: 2 }}>
               Shopping Basket Details
-              {basket.getItems().map((item, index) => (
-                <div>
-                  <ShoppingBasketItem
-                    key={index}
-                    name={item.product.name}
-                    image={item.product.image}
-                    price={item.product.getPrice()}
-                    quantity={item.quantity}
-                    handleRemoveFromBasket={() =>
-                      handleRemoveFromBasket(item.product)
-                    }
-                  />
-                </div>
+              {/* Render each item in the basket */}
+              {basket.getItems().map((item: any, index: number) => (
+                <ShoppingBasketItem
+                  key={index}
+                  name={item.product.name}
+                  image={item.product.image}
+                  price={item.product.getPrice()}
+                  quantity={item.quantity}
+                  handleRemoveFromBasket={() =>
+                    handleRemoveFromBasket(item.product)
+                  }
+                />
               ))}
             </Typography>
             <Typography sx={{ p: 2 }}>
