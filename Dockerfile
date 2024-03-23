@@ -1,20 +1,22 @@
-# Use the official Node.js 20.11.1 image.
-FROM node:20.11.1-alpine
+FROM node:20-alpine
 
-# Create and change to the app directory.
-WORKDIR /usr/src/app
+# Set working directory
 
-# Copy application dependency manifests to the container image.
+ENV NODE_ENV=production
+# Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Install production dependencies.
-RUN npm install --only=production
 
-# Copy local code to the container image.
-COPY . ./
+# Copy the built application files
 
-# Build the application.
-RUN npm run build
+COPY ./.next ./.next
+COPY ./next.config.js ./next.config.js
+COPY ./public ./public
+COPY ./.next/static ./_next/static
+COPY ./node_modules ./node_modules
+# Expose the desired port (e.g., 3000)
 
-# Specify the command to run on container startup.
-CMD ["npm", "start"]
+EXPOSE 3000
+
+# Start the Node.js server
+CMD ["npm", "run", "start"]
