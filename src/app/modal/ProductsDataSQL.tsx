@@ -18,7 +18,7 @@ export function fetchProducts(): Promise<ProductClass[]> {
 }
 
 export function fetchCategories(): Promise<string[]> {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`)
+  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`)
     .then((response) => response.json())
     .then((data) => data.map((category: any) => category.category_name));
 }
