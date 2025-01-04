@@ -32,6 +32,7 @@ const ProductsList: React.FC<Props> = (props: Props) => {
     ? products.filter((product: any) => product.category === selectedCategory)
     : products;
 
+  console.log("Categories: ");
   console.log(categories);
 
   return (
